@@ -1,0 +1,67 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="Rocketwallet.Pages.CategoriesPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    
+    xmlns:Controls="clr-namespace:Coding4Fun.Toolkit.Controls;assembly=Coding4Fun.Toolkit.Controls"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="False">
+
+    <!--LayoutRoot is the root grid where all page content is placed-->
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" Margin="22, 16, 22, 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="0" Height="42" Source="/Images/rw_logo_48.png"/>
+            <Rectangle Grid.Column="1" Width="1" Fill="White" Margin="5 0 5 0" Opacity="0.6"/>
+            <TextBlock Grid.Column="2" Text="{Binding LocalizedResources.PageCategories, Source={StaticResource LocalizedStrings}}" VerticalAlignment="Center" FontSize="24" Style="{StaticResource PhoneTextGroupHeaderStyle}"/>
+        </Grid>
+
+        <StackPanel Grid.Row="1" Orientation="Vertical" Margin="22 0 22 0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0" Orientation="Vertical">
+                    <TextBlock Text="Nazwa" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+                    <toolkit:PhoneTextBox x:Name="txtCategoryName" Text="{Binding TempCategoryName, Mode=TwoWay}" Hint="wpisz nazwę kategori" Margin="-12 0 5 0" 
+                                          ActionIcon="/Images/clean_32.png" ActionIconTapped="txtCategoryName_ActionIconTapped" TextChanged="txtCategoryName_TextChanged"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Orientation="Vertical">
+                    <TextBlock Text="Kolor" Style="{StaticResource PhoneTextSubtleStyle}" Margin="0"/>
+                    <Button x:Name="btnCategoryColor" Height="73" Width="83" Margin="-12 0" Background="{Binding TempCategoryColor, Mode=TwoWay}" 
+                            BorderThickness="1" Click="btnCategoryColor_Click"/>
+                </StackPanel>
+                <Controls:RoundButton Grid.Column="2" x:Name="btnAddCategory" VerticalAlignment="Bottom" Margin="10 0 -10 10" ButtonHeight="60" ButtonWidth="60" 
+                                      ImageSource="/Images/add_32.png" IsEnabled="{Binding CanAddCategory}"/>
+            </Grid>
+
+        </StackPanel>
+
+        <Rectangle Grid.Row="2" Fill="White" Height="1" Margin="0, 0" Opacity="0.2"/>
+    </Grid>
+
+</phone:PhoneApplicationPage>
